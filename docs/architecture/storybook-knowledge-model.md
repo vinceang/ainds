@@ -2,817 +2,668 @@
 
 ## Purpose
 
-The AINDS Storybook Knowledge Model defines how Storybook becomes more than a component showcase.
-
-Traditional Storybook documentation explains what a component is, how it renders, and how to call its API.
-
-AINDS extends that model so Storybook also explains:
-
-- Why the component exists
-- When it should be used
-- When it should not be used
-- Which organizational decisions govern it
-- Which knowledge sources informed it
-- Which accessibility requirements apply
-- Which tokens and patterns it depends on
-- How humans and AI may extend it safely
+The AINDS Storybook Knowledge Model defines how Storybook becomes more than a component catalog.
 
 > **Storybook is where humans and AI learn how the system should be used.**
 
-## Storybook as a Knowledge Surface
+Traditional Storybook documentation answers questions such as:
 
-A knowledge surface is any interface through which organizational knowledge becomes discoverable and actionable.
+- What does this component look like?
+- What props or attributes does it accept?
+- What states and variants exist?
+- How do I implement it?
 
-Storybook is especially valuable because it sits at the point where design intent, component behavior, code, testing, and documentation meet.
+AINDS extends that model to answer:
 
-In an AINDS implementation, Storybook should serve four audiences at once:
+- Why does this component exist?
+- What user problem does it solve?
+- When should it be used?
+- When should it not be used?
+- What organizational decisions govern it?
+- What knowledge must AI consult before generating with it?
+- When may it be extended, and who approves that change?
 
-### Product designers
+Storybook becomes a **knowledge surface**: a human-readable and machine-consumable projection of the design system's canonical knowledge.
 
-They need to understand intended use, interaction patterns, variants, states, accessibility, and the boundaries of the component.
+## Storybook Is a Surface, Not the Source
 
-### Engineers
+Storybook should expose knowledge, but it should not become the only place that knowledge exists.
 
-They need APIs, examples, event behavior, token dependencies, implementation constraints, and tests.
+The canonical sources remain the repository's knowledge articles, ADRs, pattern documents, token definitions, content standards, and governance records.
 
-### Product and content practitioners
+```text
+Canonical Knowledge
+        ↓
+Storybook Knowledge Model
+        ↓
+Interactive Documentation
+        ↓
+Humans and AI
+```
 
-They need terminology, content rules, workflow guidance, localization behavior, and examples of appropriate use.
-
-### AI specialists and coding assistants
-
-They need explicit, structured knowledge that prevents them from treating a component as a generic visual primitive.
-
-The same canonical knowledge should support all four audiences rather than creating separate and potentially contradictory documentation.
+This distinction prevents component documentation from drifting away from the decisions it represents.
 
 ## Information Architecture
 
-AINDS Storybook should organize information into five layers.
+AINDS Storybook should organize knowledge at four levels.
 
-```text
-System Knowledge
-    ↓
-Pattern Knowledge
-    ↓
-Component Knowledge
-    ↓
-Stories and Examples
-    ↓
-Implementation and Evaluation
-```
+### 1. Foundation Level
 
-### Layer 1: System Knowledge
+System-wide guidance that applies across components.
 
-System-level documentation applies across the entire design system.
-
-Recommended pages:
+Suggested sections:
 
 - Start Here
-- Foundational Principles
-- Knowledge Before Generation
+- Foundations
 - Design Language
-- Accessibility Baseline
-- Token Philosophy
+- Accessibility
 - Content and Language
-- Localization and Internationalization
-- Governance and Contribution
-- AI Usage and Review Policy
-- Knowledge Sources
-
-These pages answer the broad questions that should not be repeated on every component page.
-
-### Layer 2: Pattern Knowledge
-
-Patterns explain how recurring user problems are solved across components.
-
-Recommended pattern groups:
-
-- Forms and validation
-- Navigation
-- Feedback and status
-- Empty and loading states
-- Errors and recovery
-- Search, filtering, and sorting
-- Destructive actions
-- Dialogs, drawers, and overlays
-- Tables and data-dense interfaces
-- Onboarding and progressive disclosure
-
-A component page should link to relevant pattern pages instead of restating the full pattern.
-
-### Layer 3: Component Knowledge
-
-Each component page contains the complete knowledge contract for using and extending that component.
-
-### Layer 4: Stories and Examples
-
-Stories show the component in meaningful states and realistic product contexts.
-
-Examples should demonstrate decisions, not just visual permutations.
-
-### Layer 5: Implementation and Evaluation
-
-This layer includes source examples, API references, tests, accessibility checks, visual-regression coverage, and AI-generation guidance.
-
-## Standard Component Documentation Model
-
-Every production component should use a consistent documentation model.
-
-Not every section must be equally long, but missing sections should be intentional.
-
-### 1. Summary
-
-A plain-language description of the component and the user problem it solves.
-
-Example:
-
-> A Button triggers an immediate action. It should communicate what will happen next and remain understandable across default, hover, focus, loading, disabled, and error-related states.
-
-### 2. Purpose
-
-Explain why the component exists in the system.
-
-Questions to answer:
-
-- What recurring problem does it solve?
-- Why is it a shared component rather than local application UI?
-- What inconsistency does it prevent?
-
-### 3. When to Use
-
-List appropriate contexts in product language.
-
-### 4. When Not to Use
-
-Identify common misuse and point to better alternatives.
-
-This is particularly important for AI, which often selects components by visual resemblance rather than product intent.
-
-### 5. Anatomy
-
-Document the component's visible and semantic parts.
-
-For a Button, anatomy may include:
-
-- Container
-- Label
-- Leading icon
-- Trailing icon
-- Loading indicator
-- Accessible name
-
-### 6. Variants, States, and Behaviors
-
-Document supported variants and meaningful states.
+- Tokens
+- UX Patterns
+- Governance
+- AI Guidance
+- Changelog and Migration
 
 Examples:
 
-- Primary, secondary, tertiary, and destructive intent
-- Default, hover, active, focus-visible, disabled, and loading
-- Icon-only and text-plus-icon forms
-- Responsive and high-contrast behavior
+- Accessibility target
+- Validation philosophy
+- Voice and tone
+- Icon-family rules
+- Dark-mode strategy
+- Localization expectations
+- Contribution and deprecation rules
 
-Variants should not be treated as a visual catalog alone. Each variant must explain the decision it represents.
+### 2. Pattern Level
 
-### 7. UX Rationale
+Reusable decisions that coordinate multiple components.
 
-Explain the reasoning behind the component's behavior.
+Examples:
 
-For example:
+- Form validation
+- Search and filtering
+- Empty states
+- Destructive actions
+- Loading and progress
+- Dialogs and drawers
+- Data-table behavior
+- Notifications
 
-- Why primary actions remain enabled during form completion
-- Why loading preserves button width
-- Why destructive styling is reserved for irreversible or high-risk actions
-- Why icon-only buttons require accessible names and often visible tooltips
+Pattern pages should link to the components that implement them. Component pages should link back to the patterns that govern them.
 
-This section captures the judgment that would otherwise become tribal knowledge.
+### 3. Component Level
 
-### 8. Accessibility Contract
+The complete contract for an individual component.
 
-Document the behavior that must remain true in every implementation.
+Each component page should include the standard knowledge sections defined below.
+
+### 4. Example and Workflow Level
+
+Composed experiences showing how multiple patterns and components work together.
+
+Examples:
+
+- Account registration
+- Checkout
+- CRUD editing flow
+- Search-results page
+- Settings form
+- Accessible confirmation flow
+
+These examples reveal gaps that isolated component stories cannot.
+
+## Component Documentation Model
+
+Every component page should use a consistent structure. Sections may be collapsed or omitted only when they genuinely do not apply.
+
+### 1. Summary
+
+A concise explanation of what the component is and the user problem it solves.
 
 Include:
 
-- Required semantics
+- One-sentence definition
+- Lifecycle status
+- Package and version
+- Owner
+- Related patterns
+
+### 2. Interactive Examples
+
+Show the component in meaningful states rather than only visual permutations.
+
+Include:
+
+- Default
+- Variants
+- States
+- Responsive behavior
+- Light and dark themes
+- High-contrast or forced-colors behavior where relevant
+- Localized and right-to-left examples
+- Reduced-motion behavior
+
+### 3. When to Use
+
+Explain the situations in which the component is the preferred solution.
+
+This should describe user and product context, not merely implementation convenience.
+
+### 4. When Not to Use
+
+Document common misuses and the preferred alternatives.
+
+This section is essential for both human contributors and AI generation because it constrains plausible but incorrect choices.
+
+### 5. Anatomy
+
+Identify the named parts of the component and their responsibilities.
+
+Anatomy should connect visual regions to APIs, slots, tokens, content rules, and accessibility semantics.
+
+### 6. Behavior
+
+Describe the interaction contract.
+
+Include:
+
+- Pointer behavior
 - Keyboard behavior
+- Focus behavior
+- State transitions
+- Validation behavior
+- Loading behavior
+- Error recovery
+- Disabled versus unavailable behavior
+
+### 7. Accessibility
+
+Describe the required accessible experience.
+
+Include:
+
+- Native semantic element or role
+- Accessible name requirements
+- Keyboard interaction
 - Focus management
 - Screen-reader expectations
-- Contrast and non-color requirements
+- Contrast and non-color cues
 - Touch-target requirements
-- Reduced-motion behavior
-- High-contrast or forced-colors considerations
-- Known limitations
-- Required automated and manual tests
+- Motion considerations
+- Testing instructions
 
-The accessibility contract should be testable.
+Accessibility guidance should link to the source standards and relevant system decisions.
 
-### 9. Content Guidance
+### 8. Content Guidance
 
-Define how words work inside or around the component.
+Define the language that belongs inside the component.
 
 Include:
 
-- Label grammar
 - Text casing
-- Terminology
 - Recommended length
+- Terminology
 - Voice and tone
-- Localization considerations
-- Error or confirmation language
+- Error-message guidance
+- Localization constraints
+- Truncation and wrapping behavior
 
-Example:
+### 9. Tokens and Theming
 
-> Use concise verb-led labels such as “Save changes.” Avoid vague labels such as “Continue” when a more specific outcome is available.
+List the semantic tokens the component consumes.
 
-### 10. Token Contract
+Include:
 
-List the semantic tokens consumed by the component and why.
-
-Avoid presenting only raw values.
-
-Example:
-
-```text
-color.action.primary.background.default
-color.action.primary.background.hover
-color.action.primary.foreground
-border.focus.visible
-motion.feedback.short
-```
-
-Document:
-
-- Semantic purpose
+- Token names
+- Purpose
 - Theme behavior
+- Allowed overrides
 - Accessibility constraints
-- Which tokens may be overridden
-- Which values are implementation details and must not be consumed directly
+- Deprecated tokens
 
-### 11. Localization and Internationalization
+Avoid documenting raw values as the primary contract. The semantic decision is more durable than the value.
 
-Document:
+### 10. API and Code
 
-- Text expansion behavior
-- Right-to-left mirroring
-- Locale-sensitive content
-- Truncation rules
-- Icon-direction considerations
-- Minimum and maximum content assumptions
+Provide implementation details appropriate to each supported platform.
 
-### 12. API and Code Examples
+Include:
 
-Provide framework-appropriate examples while keeping the knowledge model platform-neutral.
+- Props, inputs, attributes, events, slots, and parts
+- Framework-specific examples
+- Minimal code example
+- Composition example
+- Import and package information
+- Stability and deprecation notes
 
-Examples may include:
+### 11. Do and Don't
 
-- Native Web Component usage
-- Angular adapter usage
-- React adapter usage
-- Event handling
-- Loading state
-- Icon usage
-- Accessible naming
+Show concrete, visually comparable examples.
 
-Code snippets should demonstrate recommended product behavior, not merely valid syntax.
+Each example should explain the reason, not merely mark one image as correct and another as incorrect.
 
-### 13. Do and Don't
+### 12. UX Rationale
 
-Use paired examples to make intent memorable.
+Explain the decisions behind the component.
 
-Each example should include a short rationale.
+Examples:
 
-Weak:
+- Why submit remains enabled before validation
+- Why a dialog traps focus
+- Why a destructive action requires confirmation
+- Why a link is preferred over a button for navigation
 
-> Don't use too many primary buttons.
+This is where the component stops being only an artifact and becomes organizational knowledge.
 
-Better:
-
-> Do use one clear primary action per decision area. Don't style every available action as primary, because equal emphasis forces the user to determine hierarchy without guidance.
-
-### 14. Governance
+### 13. Governance
 
 Document how the component may change.
 
 Include:
 
-- Owner
-- Lifecycle status
-- Admission criteria for new variants
-- Required evidence for behavior changes
-- Reviewers
-- Backward-compatibility expectations
-- Deprecation policy
+- Owner and reviewers
+- Admission criteria
+- Variant-creation rules
+- Allowed customization
+- Extension points
+- Breaking-change policy
+- Deprecation process
 - Exception process
 
-Example rule:
+### 14. AI Guidance
 
-> A new Button variant requires a recurring product need that cannot be represented by an existing semantic intent. A one-product visual preference is not sufficient.
-
-### 15. AI Guidance
-
-Provide explicit instructions for AI assistants and specialists.
-
-This is not a collection of generic prompts. It is a component-specific generation contract.
+Provide structured guidance for AI-assisted work.
 
 Include:
 
-- Required knowledge to consult
-- Allowed uses
+- Required knowledge sources
+- Required patterns
+- Required tokens
 - Prohibited assumptions
-- Questions that require human input
-- Expected output format
-- Validation requirements
+- Generation prompts
+- Evaluation checklist
+- Human-review triggers
 
-### 16. Knowledge Sources and Related Decisions
+### 15. Knowledge Sources and Traceability
 
-Link back to the canonical knowledge that governs the component.
+Link the component to its canonical knowledge.
 
 Examples:
 
-- UX pattern documents
-- Accessibility standards
-- Design-language rules
-- ADRs
-- Research findings
-- Content guidance
-- Token decisions
-- Knowledge sources
+- UX pattern
+- Accessibility standard
+- ADR
+- Research finding
+- Content standard
+- Token definition
+- External adopted source
 
-### 17. Evaluation and Tests
+A contributor should be able to move from artifact to decision, principle, and source.
 
-Show how the system proves the component meets its contract.
+### 16. Tests and Quality Evidence
+
+Expose the tests that prove the component contract.
 
 Include:
 
 - Interaction tests
 - Accessibility tests
 - Visual-regression coverage
-- Keyboard test cases
-- Localization examples
-- Dark-mode and high-contrast examples
-- AI-output evaluation where applicable
+- Localization coverage
+- Browser support
+- Known limitations
 
-## Sample Component Knowledge Page: Button
+### 17. Changelog and Migration
 
-The following condensed model illustrates how a Button page should read.
+Document meaningful changes and the action required from consumers.
+
+## Sample: Button Knowledge Page
+
+The following is an abbreviated example of how the model applies to a Button.
 
 ### Summary
 
-A Button triggers an immediate action.
+A Button initiates an action in the current context.
 
-### Use it for
+### Use
 
-- Submitting a form
-- Confirming a decision
-- Starting a task
-- Triggering a reversible or irreversible action with clear intent
+Use a Button to submit data, confirm a choice, trigger a process, or change application state.
 
-### Do not use it for
+### Do Not Use
 
-- Navigation to another destination; use a link
-- Toggling a persistent state; use an appropriate switch or toggle control
-- Selecting one item from a set; use a selection control
+Do not use a Button for navigation when a semantic link is available.
 
-### UX rationale
+### Behavior
 
-The visual hierarchy of buttons should reflect decision hierarchy. A screen may contain several actions, but usually only one should receive primary emphasis within a decision area.
+Primary actions generally remain enabled so users may attempt progression and receive clear validation feedback. Disable an action only when the action is truly unavailable and the reason is understandable.
 
-For form validation, keep the submit or progression action available unless a known prerequisite makes the action impossible. Let the action reveal validation feedback rather than leaving users to infer why a disabled button cannot be used.
+### Accessibility
 
-### Accessibility contract
+- Use the native `button` element when possible.
+- Ensure every button has an accessible name.
+- Preserve visible focus.
+- Do not communicate state by color alone.
+- Announce loading state without changing the accessible name unexpectedly.
 
-- Use native button semantics when possible
-- Preserve keyboard activation with Enter and Space
-- Provide a visible focus indicator
-- Do not use color alone to express destructive intent
-- Icon-only buttons require an accessible name
-- Loading must communicate progress without unexpectedly moving focus
-- Disabled behavior must remain understandable to assistive-technology users
+### Content
 
-### Content guidance
-
-Prefer specific verb-led labels:
-
-- Save changes
-- Add member
-- Delete account
-
-Avoid vague language when the result can be named:
-
-- Submit
-- Okay
-- Continue
+- Use sentence case.
+- Begin with a clear verb.
+- Prefer specific labels such as `Save changes` over generic labels such as `Submit`.
 
 ### Governance
 
-Create a new variant only when an existing semantic intent cannot represent a repeated cross-product need.
+A new visual variant requires evidence of a recurring semantic need that cannot be expressed by existing variants. Product-specific decoration is not sufficient.
 
-### AI generation contract
+### AI Guidance
 
-Before generating a Button implementation:
+Before generating a Button implementation or usage example, consult:
 
-1. Identify the user action and its consequence.
-2. Confirm whether the control performs an action or navigation.
-3. Consult the form-validation pattern when used in forms.
-4. Select an existing semantic intent.
-5. Use approved tokens only.
-6. Include loading, focus, disabled, and error-adjacent behavior where relevant.
-7. Validate keyboard and accessible-name behavior.
-8. Escalate requests for a new variant to human review.
+- Button component contract
+- Form-validation pattern
+- Action hierarchy guidance
+- Content standards
+- Accessibility requirements
+- Relevant semantic tokens
+
+Prompt example:
+
+```text
+Create a form action area using the AINDS Button component.
+
+Consult the form-validation and action-hierarchy patterns before generating.
+Use semantic tokens only.
+Keep the primary action enabled unless the action is genuinely unavailable.
+Include loading, validation-error, keyboard, and screen-reader behavior.
+Explain any deviation from the documented pattern.
+```
+
+Evaluation checklist:
+
+- Is a Button semantically correct for this action?
+- Is the hierarchy clear?
+- Does the label describe the outcome?
+- Are keyboard and focus states covered?
+- Does validation follow the system pattern?
+- Are only documented variants and tokens used?
 
 ## Prompt Model
 
-AINDS prompts in Storybook should be practical, scoped, and traceable to knowledge.
+Prompts in Storybook should not be presented as magic phrases that bypass judgment. They should be reusable task contracts grounded in system knowledge.
 
-### Prompt anatomy
+Each prompt should contain:
 
-A prompt should contain:
+1. **Task** — what should be created or evaluated
+2. **Context** — user, product, and workflow
+3. **Required knowledge** — patterns, components, tokens, and standards to consult
+4. **Constraints** — accessibility, content, architecture, localization, and governance requirements
+5. **Expected output** — code, explanation, tests, or documentation
+6. **Evaluation** — criteria used to judge the result
+7. **Escalation** — conditions requiring human review
 
-```text
-Intent
-+ Relevant knowledge
-+ Constraints
-+ Required components
-+ Required states
-+ Evaluation criteria
-+ Escalation conditions
-```
+### Prompt Categories
 
-### Example: Generate a form action area
+- Generate an implementation
+- Compose a workflow
+- Review an implementation
+- Audit accessibility
+- Produce tests
+- Write or localize content
+- Extend an icon or illustration family
+- Propose a new variant
+- Migrate deprecated usage
 
-```text
-Create a responsive form action area using the AINDS Button component.
+### Prompt Status
 
-Intent:
-Allow a user to save profile changes or cancel and return without saving.
+Prompts should carry lifecycle status:
 
-Required knowledge:
-- Forms and Validation pattern
-- Button component guidance
-- Content and Language guidance
-- Accessibility baseline
+- Experimental
+- Recommended
+- Deprecated
 
-Constraints:
-- Use one primary action: “Save changes”
-- Use a secondary or tertiary action for “Cancel”
-- Do not disable Save solely because the current form is invalid
-- On activation, expose validation errors and move focus according to the form pattern
-- Include loading behavior that prevents duplicate submission
-- Use semantic tokens only
+Prompts should be versioned because they are part of the design system's interface with AI.
 
-Evaluation:
-- Correct action hierarchy
-- Keyboard operability
-- Clear accessible names
-- Understandable validation behavior
-- Responsive layout
+## Governance Model
 
-Escalate when:
-- The workflow requires a new Button variant
-- Product policy conflicts with the validation pattern
-```
+Storybook should make governance visible at the point of use.
 
-### Prompt presentation in Storybook
+### Component Status
 
-Prompts should appear as copyable, versioned examples near the knowledge they depend on.
+Each component should display a status such as:
 
-Each prompt should display:
+- Proposed
+- Experimental
+- Stable
+- Deprecated
+- Removed
 
-- Purpose
-- Intended AI specialist or tool
-- Required knowledge links
-- Inputs to replace
-- Expected output
-- Evaluation checklist
-- Version or last-reviewed date
+### Ownership
 
-Prompts should not be presented as magical one-line commands. They should demonstrate how organizational knowledge constrains generation.
+Each knowledge page should identify the responsible team or role.
 
-## Governance Model per Component
+### Decision Boundaries
 
-Governance should be visible in Storybook rather than hidden in a contribution repository.
+Storybook should clearly state:
 
-Each component should display a compact governance panel containing:
+- What consumers may configure
+- What consumers may compose
+- What requires a contribution
+- What requires an ADR
+- What is prohibited
 
-- Status: proposed, experimental, stable, deprecated
-- Owner
-- Last reviewed
-- Supported platforms
-- Related ADRs
-- Approved variants
-- Known exceptions
-- Contribution path
-- Deprecation or replacement guidance
+### New Variant Threshold
 
-### Change classification
+A new variant should require:
 
-#### Documentation-only change
-
-Clarifies usage without changing behavior.
-
-Typical review:
-
-- Component owner
-- Content or accessibility reviewer when relevant
-
-#### Additive change
-
-Adds a supported state, capability, or adapter without breaking existing usage.
-
-Typical evidence:
-
-- Repeated product need
+- A recurring semantic need
+- Evidence that composition or existing variants are insufficient
 - Accessibility review
-- Token and API review
-- Tests
+- Token impact review
+- Cross-product relevance or an explicit exception
+- Documentation and test updates
+- Design-system approval
 
-#### Behavioral change
+### Exception Records
 
-Changes interaction, semantics, content expectations, or state behavior.
+Exceptions should be documented with:
 
-Typical evidence:
+- Context
+- Owner
+- Rationale
+- Scope
+- Expiration or review date
 
-- UX rationale
-- Research or product evidence
-- Accessibility impact
-- Migration guidance
-- ADR when system-wide
+## Knowledge Links
 
-#### Breaking or deprecating change
+Every Storybook page should link to stable identifiers rather than only relative prose references.
 
-Removes or replaces existing behavior.
-
-Typical evidence:
-
-- Replacement path
-- Adoption analysis
-- Migration plan
-- Versioning decision
-- Communication plan
-
-## Knowledge Links and Traceability
-
-Every component page should make its knowledge dependencies visible.
-
-Recommended relationship model:
+Suggested relationships:
 
 ```text
-Knowledge Source
-    ↓
-Principle
-    ↓
-Pattern or Decision
-    ↓
 Component
-    ↓
-Story
-    ↓
-Test
+  ├── governed_by → UX Pattern
+  ├── consumes → Tokens
+  ├── conforms_to → Accessibility Standard
+  ├── uses_language → Content Standard
+  ├── decided_by → ADR
+  ├── supported_by → Research or Evidence
+  └── generated_with → Prompt Contract
 ```
 
-A Button story demonstrating form submission should link to:
+Over time, these relationships can support a machine-readable manifest or knowledge graph.
 
-- Button component guidance
-- Forms and Validation pattern
-- Accessibility contract
-- Relevant tokens
-- Content guidance
-- Interaction tests
+## Machine-Readable Companion
 
-Traceability gives humans and AI a way to move from implementation back to intent.
-
-## Story Design
-
-Stories should represent meaningful states and decisions.
-
-### Required story categories
-
-#### Foundations
-
-- Default
-- Variants
-- Sizes
-- Themes
-
-#### Interaction states
-
-- Focus-visible
-- Loading
-- Disabled
-- Error-adjacent use
-- Keyboard interaction
-
-#### Content stress tests
-
-- Long labels
-- Localized labels
-- Right-to-left content
-- Icon-plus-text
-- Icon-only where allowed
-
-#### Accessibility contexts
-
-- High contrast or forced colors
-- Reduced motion
-- Zoom or text scaling
-- Screen-reader-oriented examples where behavior is not visually obvious
-
-#### Product-context examples
-
-- Form actions
-- Confirmation dialog actions
-- Toolbar actions
-- Destructive workflow
-
-Product-context stories are essential because isolated component stories cannot teach interaction hierarchy by themselves.
-
-## Recommended Storybook Navigation
-
-```text
-Introduction
-  ├── Start Here
-  ├── AINDS Principles
-  ├── Knowledge Before Generation
-  └── How to Use This Storybook
-
-Foundations
-  ├── Design Language
-  ├── Accessibility
-  ├── Tokens
-  ├── Content
-  ├── Localization
-  └── Motion
-
-Patterns
-  ├── Forms and Validation
-  ├── Feedback
-  ├── Navigation
-  ├── Empty States
-  └── Destructive Actions
-
-Components
-  ├── Actions
-  ├── Forms
-  ├── Navigation
-  ├── Feedback
-  ├── Data Display
-  └── Overlays
-
-Governance
-  ├── Contribution
-  ├── Component Lifecycle
-  ├── Decision Records
-  └── Release and Deprecation
-
-AI
-  ├── Using AI with the System
-  ├── Prompt Library
-  ├── AI Specialists
-  └── Evaluation and Review
-```
-
-## Implementation Strategy
-
-AINDS should not fork Storybook at this stage.
-
-Forking would create a significant maintenance obligation and would separate AINDS from improvements in the upstream Storybook ecosystem.
-
-Use a progressive implementation strategy.
-
-### Phase 1: MDX and standard Docs
-
-Use existing Storybook capabilities to prove the information architecture.
-
-Implement:
-
-- Standalone MDX pages
-- Custom component Docs pages
-- Existing Docs blocks
-- Links to repository knowledge
-- Copyable prompts
-- Governance and knowledge-source sections
-
-Goal:
-
-Validate the content model before building specialized tooling.
-
-### Phase 2: Reusable AINDS Docs blocks
-
-Create reusable React/MDX documentation blocks such as:
-
-- `<KnowledgeSources />`
-- `<Governance />`
-- `<AIGuidance />`
-- `<TokenContract />`
-- `<AccessibilityContract />`
-- `<DoDont />`
-- `<RelatedKnowledge />`
-
-Goal:
-
-Reduce documentation drift and establish consistent presentation.
-
-### Phase 3: AINDS Storybook addon
-
-Build an addon only after repeated needs are proven.
-
-Potential capabilities:
-
-- Knowledge panel
-- Governance status
-- Prompt library
-- Traceability graph
-- Machine-readable export
-- Review status and freshness warnings
-- Links to ADRs and knowledge sources
-- AI-specialist context bundles
-
-Goal:
-
-Make the knowledge layer easier to maintain and consume without changing Storybook's core.
-
-### Phase 4: External knowledge integration
-
-Connect Storybook to the canonical knowledge repository or knowledge service.
-
-Potential capabilities:
-
-- Resolve stable knowledge IDs
-- Detect stale or broken links
-- Generate context bundles for AI tools
-- Show ownership and review dates
-- Validate required documentation sections
-
-### Fork threshold
-
-Consider a Storybook fork only when all of the following are true:
-
-- A core AINDS capability cannot be implemented through MDX, Docs customization, addons, presets, or external services
-- The capability is central to the methodology rather than a convenience
-- The maintenance cost is understood and funded
-- Upstream contribution has been attempted or evaluated
-- The fork has a clear compatibility and upgrade strategy
-
-Current decision:
-
-> **Do not fork Storybook. Begin with MDX, reusable Docs blocks, and an addon path.**
-
-## Machine-Readable Knowledge
-
-Storybook is a human-facing knowledge surface, but AINDS should avoid trapping knowledge only in rendered prose.
-
-Where practical, component documentation should reference structured metadata.
+Human-readable MDX should be paired with structured metadata where practical.
 
 Example:
 
 ```yaml
 id: COMPONENT-BUTTON
 status: stable
+owner: design-systems
 knowledge_domain: components
-owners:
-  - design-systems
 patterns:
-  - UX-FORM-VALIDATION
   - UX-ACTION-HIERARCHY
-knowledge_sources:
-  - WCAG-2.2
-  - CONTENT-STYLE-GUIDE
-ai_consumers:
-  - component-engineer
-  - accessibility-auditor
-required_sections:
-  - accessibility-contract
-  - token-contract
-  - governance
-last_reviewed: YYYY-MM-DD
+  - UX-FORM-VALIDATION
+tokens:
+  - color.action.primary.background
+  - color.action.primary.foreground
+  - space.control.inline
+accessibility:
+  - A11Y-KEYBOARD-ACTIVATION
+  - A11Y-FOCUS-VISIBLE
+content:
+  - CONTENT-ACTION-LABELS
+ai:
+  prompt_contracts:
+    - PROMPT-BUTTON-COMPOSE
+  human_review_when:
+    - new_variant
+    - destructive_action
 ```
 
-Storybook can render this metadata while AI tooling consumes the same source.
+The metadata should not duplicate full guidance. It should provide identity, relationships, status, and discovery.
 
-## Definition of Done for an AINDS Component Page
+## Implementation Strategy
 
-A component page is complete when:
+### Phase 1: MDX and Existing Storybook Capabilities
 
-- Its purpose and boundaries are clear
-- Appropriate and inappropriate uses are documented
-- UX rationale is explicit
-- Accessibility behavior is testable
-- Token dependencies are visible
-- Content and localization guidance are present where relevant
-- Governance and ownership are visible
-- AI-generation guidance is constrained by canonical knowledge
-- Knowledge sources and related decisions are linked
-- Stories cover meaningful states and realistic contexts
-- Tests are traceable to the documented contract
+Start without a fork.
 
-## Relationship to Knowledge Before Generation
+Use:
 
-Traditional component documentation often begins after implementation.
+- Component Story Format for examples and states
+- MDX for structured documentation
+- Storybook Doc Blocks for stories, controls, source, and API information
+- Custom React documentation components for AINDS sections such as Governance, AI Guidance, Knowledge Sources, Do/Don't, and Status
+- Unattached MDX pages for foundations, patterns, governance, and AI guidance
 
-AINDS reverses that order.
+Storybook's current MDX implementation supports Markdown, linked stories, Doc Blocks, arbitrary JSX components, custom documentation pages, and documentation attached to or independent from stories. This is sufficient for the first reference implementation.
 
-The knowledge model defines intent, constraints, rationale, and evaluation before humans or AI generate or change a component.
+### Phase 2: Reusable AINDS Doc Blocks
 
-Storybook then becomes the place where that knowledge and its implementation are experienced together.
+Create an internal package of reusable documentation components, for example:
 
-> **The component is not the whole product of the design system. The shared understanding around the component is part of the product too.**
+```text
+<AindsStatus />
+<AindsUseWhen />
+<AindsAvoidWhen />
+<AindsAccessibility />
+<AindsGovernance />
+<AindsPrompt />
+<AindsKnowledgeLinks />
+<AindsDecision />
+<AindsDoDont />
+```
+
+These blocks should normalize structure and consume component metadata where possible.
+
+### Phase 3: AINDS Storybook Addon
+
+Build an addon when dedicated user-interface behavior becomes valuable.
+
+Potential addon capabilities:
+
+- Knowledge panel beside Canvas and Docs
+- Governance and lifecycle badges
+- Knowledge-source graph
+- Prompt copying with resolved context
+- AI-readiness checks
+- Missing-knowledge warnings
+- Traceability from stories to decisions and tests
+- Export of machine-readable manifests
+
+An addon is preferable to a fork because it remains compatible with Storybook releases and can be adopted by existing design systems.
+
+### Phase 4: External Knowledge Integration
+
+Connect Storybook to the canonical knowledge repository or service.
+
+Potential integrations:
+
+- Static manifests generated at build time
+- Repository Markdown and YAML
+- Search index
+- MCP server
+- Knowledge graph
+- ADR and issue links
+
+### Phase 5: Fork Only if Fundamentally Blocked
+
+Do not fork Storybook merely to customize documentation layout or add panels. MDX, custom Doc Blocks, and addons are intended extension points.
+
+A fork should be considered only if AINDS requires core behavior that cannot reasonably be implemented through public APIs, such as a fundamentally different data model or navigation/runtime architecture.
+
+A fork would create significant maintenance cost, delay compatibility with Storybook improvements, and make adoption harder for teams with existing Storybooks.
+
+## Decision
+
+The initial AINDS reference implementation will use **Storybook with custom MDX pages and reusable AINDS Doc Blocks**.
+
+An **AINDS Storybook addon** is the preferred next extension when the knowledge model requires dedicated panels, automated validation, or machine-readable exports.
+
+AINDS will **not fork Storybook** unless a documented architectural limitation makes the addon path insufficient.
+
+## Reference Implementation Outline
+
+A future implementation may use a structure such as:
+
+```text
+.storybook/
+  main.ts
+  preview.ts
+  manager.ts
+  ainds-theme.ts
+
+src/
+  components/
+    button/
+      button.ts
+      button.stories.ts
+      button.docs.mdx
+      button.ainds.yaml
+  patterns/
+    form-validation.mdx
+  foundations/
+    accessibility.mdx
+    content-language.mdx
+    design-language.mdx
+  governance/
+    contribution.mdx
+    component-lifecycle.mdx
+  ainds-doc-blocks/
+    Governance.tsx
+    Prompt.tsx
+    KnowledgeLinks.tsx
+    Status.tsx
+```
+
+The exact framework can change. The knowledge contract should remain portable.
+
+## Success Criteria
+
+The Storybook knowledge model succeeds when a contributor—or AI assistant—can answer:
+
+- What is this component?
+- Why does it exist?
+- When should it be used or avoided?
+- How must it behave?
+- What accessible experience is required?
+- What content and localization rules apply?
+- Which tokens and patterns govern it?
+- What may be customized?
+- When is a new variant justified?
+- Which knowledge sources and decisions support it?
+- Which prompt contracts can safely generate or evaluate it?
+- What requires human review?
+
+At that point, Storybook no longer documents only a component library.
+
+It teaches humans and AI how the design system should be applied and extended.
+
+## Official Storybook References
+
+- MDX: https://storybook.js.org/docs/writing-docs/mdx
+- Doc Blocks: https://storybook.js.org/docs/writing-docs/doc-blocks
+- Writing Addons: https://storybook.js.org/docs/addons/writing-addons
