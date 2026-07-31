@@ -1,0 +1,218 @@
+# Design System Components Checklist
+
+A comprehensive list of UI elements and patterns for building a complete design system.
+
+## **Foundations (Design Tokens)**
+- Color palette (primary, secondary, semantic, neutral scales)
+- Typography scale (font families, sizes, weights, line heights, letter spacing)
+- Spacing scale (margin, padding, gap systems)
+- Border radius scale
+- Shadow/elevation scale
+- Z-index scale
+- Breakpoints (responsive design)
+- Grid system
+- Transitions/animations (duration, easing curves)
+- Opacity scale
+
+## **Typography Components**
+- Headings (H1-H6)
+- Body text (multiple sizes/weights)
+- Labels
+- Captions
+- Code/monospace text
+- Blockquotes
+- Lists (ordered, unordered, definition)
+- Links (with states: default, hover, active, visited, disabled)
+
+## **Buttons & Actions**
+- Primary/secondary/tertiary buttons
+- Destructive/danger buttons
+- Ghost/text buttons
+- Icon buttons
+- Button groups
+- Split buttons
+- Toggle buttons
+- Floating action buttons (FAB)
+- Loading buttons
+
+## **Form Elements**
+- Text inputs
+- Textarea
+- Number inputs
+- Select/dropdown (single, multi-select)
+- Autocomplete/combobox
+- Radio buttons (individual and groups)
+- Checkboxes (individual and groups)
+- Toggle switches
+- Sliders (single value, range)
+- Date picker
+- Time picker
+- Date range picker
+- Color picker
+- File upload
+- Search input
+- Pin/OTP input
+- Rich text editor
+- Form validation states (error, warning, success)
+- Helper text
+- Field labels
+- Required field indicators
+- Character counters
+
+## **Navigation**
+- Top navigation/header
+- Side navigation
+- Breadcrumbs
+- Pagination
+- Tabs (horizontal, vertical)
+- Stepper/wizard
+- Menu (dropdown, context, mega)
+- Link lists
+- Footer
+- Skip links (accessibility)
+
+## **Data Display**
+- Tables (sortable, filterable, paginated, expandable rows)
+- Lists (simple, avatar, icon, action)
+- Cards
+- Chips/tags/badges
+- Labels
+- Tooltips
+- Popovers
+- Avatars (with fallbacks, status indicators)
+- Status indicators/dots
+- Progress bars
+- Progress circles/spinners
+- Skeleton loaders
+- Empty states
+- Data visualizations (charts, graphs)
+- Key-value pairs
+- Definition lists
+- Stat tiles/metrics
+- Timeline
+
+## **Feedback & Messaging**
+- Toast/snackbar notifications
+- Alerts/banners (info, success, warning, error)
+- Inline messages
+- Modal dialogs
+- Confirmation dialogs
+- Loading states/spinners
+- Error pages (404, 500, etc.)
+- Success pages
+
+## **Overlays**
+- Modal/dialog
+- Drawer/side panel
+- Bottom sheet
+- Lightbox/image viewer
+- Backdrop/scrim
+- Popover/flyout
+
+## **Media**
+- Images (with loading states, fallbacks)
+- Image galleries/carousels
+- Video players
+- Audio players
+- Icons (system icon set)
+- Illustrations
+- Logos
+- Avatars
+
+## **Layout Components**
+- Container/wrapper
+- Grid system
+- Stack (vertical/horizontal)
+- Dividers/separators
+- Spacer
+- Card layouts
+- Panel/section
+- Accordion/collapsible
+- Sidebar
+- App shell/frame
+
+## **Interactive Elements**
+- Drag and drop
+- Resizable panels
+- Sortable lists
+- Context menus
+- Keyboard shortcuts
+- Focus management
+- Scroll behavior
+
+## **Utility Components**
+- Portal/teleport
+- Visually hidden (for screen readers)
+- Focus trap
+- Click outside detector
+- Resize observer
+- Intersection observer
+
+## **Patterns**
+- Login/authentication forms
+- Registration flows
+- Search results
+- Filters and facets
+- Sorting controls
+- Bulk actions
+- Confirmation flows
+- Multi-step forms/wizards
+- Dashboard layouts
+- Settings pages
+- Profile pages
+- Notification center
+- Command palette/omnibar
+
+## **Accessibility Primitives**
+- Focus indicators
+- Skip navigation
+- ARIA live regions
+- Screen reader only text
+- Keyboard navigation patterns
+- Focus management
+- Color contrast ratios
+- Touch target sizes
+
+## **Documentation Elements**
+- Component playground/sandbox
+- Code examples
+- Design specs
+- Usage guidelines
+- Do's and don'ts
+- Accessibility notes
+- Browser support matrix
+
+## **Advanced/Specialized**
+- Tree view/file explorer
+- Kanban board
+- Calendar view
+- Gantt chart
+- Command palette
+- Rich text toolbar
+- Virtual scroll/infinite scroll
+- Masonry layout
+- Split pane/resizable layout
+- Tour/onboarding overlays
+
+## **Mobile-Specific**
+- Pull to refresh
+- Bottom navigation bar
+- Action sheets
+- Swipe actions
+- Mobile drawer
+
+---
+
+## Implementation Priority Recommendations
+
+### Phase 1: Core Foundations
+Start with design tokens, typography, colors, spacing, and the most frequently used components.
+
+### Phase 2: Essential Components
+Buttons, form elements, basic navigation, alerts, and data display components.
+
+### Phase 3: Advanced Components
+Complex patterns, specialized components, and mobile-specific elements.
+
+### Phase 4: Documentation & Tooling
+Component playground, usage guidelines, accessibility documentation, and developer resources.
